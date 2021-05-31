@@ -46,10 +46,11 @@ const Cuartos = () => {
     const data = await axios.get(url);
     setCuartos(data.data);
     localStorage.setItem("cuartos", data);
+    console.log(cuartos);
   };
 
   useEffect(() => {
-    console.log(this.props.location.pathname);
+    
     if (!navigator.onLine) {
       if (localStorage.getItem("cuartos") !== null) {
         setCuartos(localStorage.getItem("cuartos").data);
@@ -59,7 +60,63 @@ const Cuartos = () => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const renderNombre =() => {
+    if(getBrowserLang().includes("en")){
+    return <h1>My spaces</h1>
+  }
+  else if(getBrowserLang().includes("es")){
+    return <h1>Mis espacios</h1>
+  }
+  }
+  const renderImagen = (tipo) => {
 
+    if (tipo === "room") {
+      return <img className={classes.img} src="https://image.freepik.com/vector-gratis/interior-dormitorio-ninos-cuarto-ninos-ilustracion-vectorial_87771-527.jpg" />
+    }
+    else if (tipo === "kitcken"){
+      return <img className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-cocina-interior-moderna_43633-5653.jpg" />
+    }
+  }
+
+  const renderBody = () => {
+    return cuartos.map((item) => {
+      return (
+        <div key={item.id}>
+
+
+          <div  className={classes.card} key={item["id"]}>
+          <p className={classes.nombre}> {item["name"]}</p>
+            {renderImagen(item["type"])}
+            
+            
+          </div>
+
+
+        </div>
+      );
+    });
+  };
+
+  const renderCuartos = () => {
+
+    return (
+      <div className={classes.centrar}>
+        <div className="row mt-5">
+          <div className="col">
+            <div>
+                {renderNombre()}
+            </div>
+            <div>{renderBody()}</div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  if (cuartos) {
+    return renderCuartos();
+  } else {
+    return <div> Cargando </div>;
+  }
 
 }
 
