@@ -61,56 +61,6 @@ const Cuartos = () => {
 
 
 
-
-  const renderImagen = (tipo) => {
-
-    if (tipo === "house") {
-      return <img className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-casa-venta_43605-2451.jpg" />
-    }
-    else {
-      return <img className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-edificio-apartamentos_53876-35079.jpg" />
-    }
-  }
-
-
-  const renderBody = () => {
-    return cuartos.map((item) => {
-      return (
-        <div key={item.id}>
-
-
-          <div  className={classes.card} key={item["id"]}>
-            {renderImagen(item["type"])}
-            <p className={classes.nombre}> {item["name"]}</p>
-            <p className={classes.direccion}> {item["address"]}</p>
-          </div>
-
-
-        </div>
-      );
-    });
-  };
-
-  const renderEspacios = () => {
-
-    return (
-      <div className={classes.centrar}>
-        <div className="row mt-5">
-          <div className="col">
-            <div>
-              <h1>My spaces</h1>
-            </div>
-            <div>{renderBody()}</div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-  if (cuartos) {
-    return renderEspacios();
-  } else {
-    return <div> Cargando </div>;
-  }
 }
 
 export default Cuartos;
