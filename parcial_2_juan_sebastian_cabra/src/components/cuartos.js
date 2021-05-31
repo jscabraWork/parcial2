@@ -3,6 +3,8 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 
 import {withRouter} from 'react-router-dom';
+import {useParams} from 'react-router-dom'
+
 const useStyles = makeStyles((theme) => ({
   centrar: {
     marginLeft: "10%"
@@ -32,9 +34,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Cuartos = () => {
+
+  const {id} = useParams();
+  
+
   const getBrowserLang = () => {
     return navigator.language || navigator.userLanguage;
   };
+
+
   const classes = useStyles();
   const [cuartos, setCuartos] = useState(null);
 
@@ -46,7 +54,7 @@ const Cuartos = () => {
     const data = await axios.get(url);
     setCuartos(data.data);
     localStorage.setItem("cuartos", data);
-    console.log(cuartos);
+    
   };
 
   useEffect(() => {
@@ -80,13 +88,17 @@ const Cuartos = () => {
 
   const renderBody = () => {
     return cuartos.map((item) => {
-      if(item["homeId"]==="H001"){
+
+      if(item["homeId"]===id){
+
+        let a = item["homeId"] + item["name"];
+        console.log(a)
       return (
         <div key={item.id}>
 
         
-          <div  className={classes.card} key={item["homeId"] + item["name"] }>
-          <p className={classes.nombre}> {item["name"]}</p>
+          <div  className={classes.card} key={ a}>
+          <p key={ a +"as"} className={classes.nombre}> {item["name"]}</p>
             {renderImagen(item["type"])}
             
             
@@ -118,9 +130,12 @@ const Cuartos = () => {
     );
   };
   if (cuartos) {
+    
     return renderCuartos();
+    
   } else {
     return <div> Cargando </div>;
+    
   }
 
 }
