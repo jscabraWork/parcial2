@@ -62,10 +62,10 @@ const Cuartos = () => {
 
   const renderNombre =() => {
     if(getBrowserLang().includes("en")){
-    return <h1>My spaces</h1>
+    return <h1>My rooms</h1>
   }
   else if(getBrowserLang().includes("es")){
-    return <h1>Mis espacios</h1>
+    return <h1>Mis cuartos</h1>
   }
   }
   const renderImagen = (tipo) => {
@@ -73,27 +73,32 @@ const Cuartos = () => {
     if (tipo === "room") {
       return <img className={classes.img} src="https://image.freepik.com/vector-gratis/interior-dormitorio-ninos-cuarto-ninos-ilustracion-vectorial_87771-527.jpg" />
     }
-    else if (tipo === "kitcken"){
+    else {
       return <img className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-cocina-interior-moderna_43633-5653.jpg" />
     }
   }
 
   const renderBody = () => {
     return cuartos.map((item) => {
+      if(item["homeId"]==="H001"){
       return (
         <div key={item.id}>
 
-
-          <div  className={classes.card} key={item["id"]}>
+        
+          <div  className={classes.card} key={item["homeId"] + item["name"] }>
           <p className={classes.nombre}> {item["name"]}</p>
             {renderImagen(item["type"])}
+            
             
             
           </div>
 
 
         </div>
-      );
+      )
+    }
+      
+      ;
     });
   };
 
