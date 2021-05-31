@@ -1,0 +1,9 @@
+{
+  "id": "#",
+  "name": "Nombre",
+  "address": "Dirección",
+  "phone": "Telefono",
+  "type": "Tipo",
+  "isActive": "estaActivo"
+  }
+  
