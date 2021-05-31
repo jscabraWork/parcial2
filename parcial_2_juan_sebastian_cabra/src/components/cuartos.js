@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 
-import {withRouter} from 'react-router-dom';
+
 import {useParams} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +45,7 @@ const Cuartos = () => {
 
   const classes = useStyles();
   const [cuartos, setCuartos] = useState(null);
+  const [cuarto,setCuarto] = useState(null);
 
   const url = getBrowserLang().includes("en")
     ? "https://gist.githubusercontent.com/josejbocanegra/92c90d5f2171739bd4a76d639f1271ea/raw/9effd124c825f7c2a7087d4a50fa4a91c5d34558/rooms.json"
@@ -79,10 +80,10 @@ const Cuartos = () => {
   const renderImagen = (tipo) => {
 
     if (tipo === "room") {
-      return <img className={classes.img} src="https://image.freepik.com/vector-gratis/interior-dormitorio-ninos-cuarto-ninos-ilustracion-vectorial_87771-527.jpg" />
+      return <img alt="Imagen" className={classes.img} src="https://image.freepik.com/vector-gratis/interior-dormitorio-ninos-cuarto-ninos-ilustracion-vectorial_87771-527.jpg" />
     }
     else {
-      return <img className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-cocina-interior-moderna_43633-5653.jpg" />
+      return <img alt="Imagen" className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-cocina-interior-moderna_43633-5653.jpg" />
     }
   }
 
@@ -92,7 +93,7 @@ const Cuartos = () => {
       if(item["homeId"]===id){
 
         let a = item["homeId"] + item["name"];
-        console.log(a)
+        
       return (
         <div key={item.id}>
 
@@ -113,6 +114,10 @@ const Cuartos = () => {
       ;
     });
   };
+  const click = (item) => {
+    console.log(item)
+    setCuarto(item)
+  }
 
   const renderCuartos = () => {
 

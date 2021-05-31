@@ -61,10 +61,10 @@ const Espacios = () => {
   const renderImagen = (tipo) => {
 
     if (tipo === "house") {
-      return <img className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-casa-venta_43605-2451.jpg" />
+      return <img alt="Imagen"  className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-casa-venta_43605-2451.jpg" />
     }
     else {
-      return <img className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-edificio-apartamentos_53876-35079.jpg" />
+      return <img alt="Imagen" className={classes.img} src="https://image.freepik.com/vector-gratis/ilustracion-edificio-apartamentos_53876-35079.jpg" />
     }
   }
 
