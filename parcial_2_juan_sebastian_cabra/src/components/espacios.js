@@ -87,6 +87,14 @@ const Espacios = () => {
     });
   };
 
+  const renderNombre =() => {
+    if(getBrowserLang().includes("en")){
+    return <h1>My spaces</h1>
+  }
+  else if(getBrowserLang().includes("es")){
+    return <h1>Mis espacios</h1>
+  }
+  }
   const renderEspacios = () => {
 
     return (
@@ -94,7 +102,7 @@ const Espacios = () => {
         <div className="row mt-5">
           <div className="col">
             <div>
-              <h1>My spaces</h1>
+                {renderNombre()}
             </div>
             <div>{renderBody()}</div>
           </div>
